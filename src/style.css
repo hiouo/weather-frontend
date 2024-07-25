@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(145deg, #0d1b2a, #1b263b, #27496d, #1b263b, #0d1b2a, #3a506b, #5bc0be); /* 更豐富的漸變背景 */
+  color: #e0e0e0; /* 淡色文字 */
+}
+
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(30, 58, 95, 0.9); /* 半透明深藍色背景 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+h1 {
+  text-align: center;
+  color: #ffffff; /* 白色標題 */
+  margin-bottom: 20px;
+}
+
+.card {
+  border: 3px solid #1b263b; /* 更加明顯的深藍色邊框 */
+  padding: 16px;
+  margin: 16px;
+  background: linear-gradient(145deg, #1e3a5f, #27496d, #1e3a5f, #3a506b, #5bc0be); /* 更豐富的漸變背景 */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* 添加過渡效果 */
+}
+
+.card:hover {
+  transform: scale(1.05); /* 放大效果 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* 增加陰影 */
+  background: linear-gradient(145deg, #27496d, #1e3a5f, #27496d, #3a506b, #5bc0be); /* 懸停時的漸變背景 */
+}
+
+.card h5 {
+  margin: 0 0 8px;
+  color: #ffffff; /* 白色標題 */
+  font-weight: bold; /* 粗體 */
+}
+
+.card p {
+  margin: 4px 0;
+  color: #f8f9fa; /* 更明顯的文字顏色 */
+  font-weight: bold; /* 粗體 */
+}
+
+.navbar {
+  background: linear-gradient(145deg, #1b263b, #27496d, #1b263b, #3a506b, #5bc0be); /* 更豐富的漸變背景 */
+}
+
+.navbar-brand, .nav-link {
+  color: #e0e0e0 !important; /* 淡色文字 */
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: #ffffff !important; /* 白色文字 */
+}
+
+.btn-secondary {
+  background: linear-gradient(145deg, #1e3a5f, #27496d, #1e3a5f, #3a506b, #5bc0be); /* 更豐富的漸變背景 */
+  border-color: #1e3a5f;
+  color: #e0e0e0; /* 淡色文字 */
+}
+
+.btn-secondary.active {
+  background: linear-gradient(145deg, #27496d, #1e3a5f, #27496d, #3a506b, #5bc0be); /* 更豐富的漸變背景 */
+  border-color: #27496d;
+}
+
+.container-fluid {
+  padding: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+canvas {
+  max-width: 100%;
+}

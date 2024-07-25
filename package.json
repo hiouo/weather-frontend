@@ -1,0 +1,20 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "node server.js"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/server-renderer": "^3.0.0",
+    "axios": "^0.21.1",
+    "chart.js": "^4.4.3",
+    "express": "^4.17.1",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "vite": "^4.0.0"
+  }
+}
