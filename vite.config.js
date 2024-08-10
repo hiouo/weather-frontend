@@ -1,16 +1,25 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
+import viteEslint from 'vite-plugin-eslint'
+import path from 'path'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        future: resolve(__dirname, 'future.html')
-      },
-      external: ['chart.js']
-    }
-  }
+  server: {
+    https: {
+      host: '0.0.0.0',
+    },
+  },
+  plugins: [
+    vue(),
+    viteEslint({
+      failOnError: false,
+    }),
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+    extensions: ['.ts', '.js'],
+  },
 })
