@@ -9,8 +9,8 @@ const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
 const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
 
 const API_URL = isUAT
-  ? 'https://weather-backend-03xv.onrender.com/'
-  : 'https://weather-backend-03xv.onrender.com/' // todo: modify when prd
+  ? 'http://127.0.0.1:5000/'
+  : 'http://127.0.0.1:5000/' // todo: modify when prd
 
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
@@ -89,13 +89,13 @@ export class Axios {
    * @param params request params
    */
   async get(url, params, needToken = false) {
-    needToken &&
-      (await this._axios
-        .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
-        .then((res) => {
-          this.updateToken(res.data.cft)
-          this._init()
-        }))
+    // needToken &&
+    //   (await this._axios
+    //     .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
+    //     .then((res) => {
+    //       // this.updateToken(res.data.cft)
+    //       this._init()
+    //     }))
 
     return this._api(Methods.GET, url, params)
   }
@@ -107,12 +107,12 @@ export class Axios {
    * @param recallTimes times of recall (default: 3)
    */
   async post(url, params, needToken = false) {
-    needToken &&
-      (await this._axios
-        .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
-        .then((res) => {
-          this.updateToken(res.data.cft)
-        }))
+    // needToken &&
+    //   (await this._axios
+    //     .get(`${API_URL}/YrwEUIccHZ/NF15vWoVvtL8h2bz9GHYr50vY2SQG1`, {})
+    //     .then((res) => {
+    //       // this.updateToken(res.data.cft)
+    //     }))
 
     return this._api(Methods.POST, url, params)
   }

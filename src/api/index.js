@@ -2,9 +2,9 @@ import axios from './axios'
 
 
 export default {
-  updateToken(token) {
-    axios.updateToken(token)
-  },
+  // updateToken(token) {
+  //   axios.updateToken(token)
+  // },
   // getToken() {
   //   return new Promise((resolve, reject) => {
   //     axios
@@ -37,17 +37,25 @@ export default {
   //       })
   //   })
   // },
+  // latitude, longitude
   getCategory() {
-    const _params = {}
+    const _params = {
+      latitude: 1,
+      longitude: 1
+    };
     return new Promise((resolve, reject) => {
       axios
-        .get('api/weather', _params)
+        .post('api/weather', _params, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
         .then((res) => {
-          resolve(res)
+          resolve(res);
         })
         .catch((error) => {
-          reject(error)
-        })
-    })
+          reject(error);
+        });
+    });
   },
 }

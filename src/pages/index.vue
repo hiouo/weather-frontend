@@ -1,13 +1,13 @@
 <template>
-  <h1 class="mb-4 text-center">台灣各地天氣</h1>
+  <h1 class="mb-4 text-center H1">台灣各地天氣</h1>
   <div class="row">
     <div v-for="weather in weatherData" :key="weather.zh_city" class="col-md-4 mb-4">
       <div class="card shadow-sm border-0">
         <div class="card-body">
-          <h5 class="card-title">{{ weather.zh_city }} ({{ weather.en_city }})</h5>
-          <p class="card-text">溫度: {{ weather.temp }}°C</p>
-          <p class="card-text">描述: {{ weather.description }}</p>
-          <p class="card-text">時間: {{ weather.data_time }}</p>
+          <h5 class="card-title">{{ weather.city }} ({{ weather.district }})</h5>
+          <p class="card-text">溫度: {{ weather.weather.main.temp }}°C</p>
+          <p class="card-text">描述: {{ weather.weather.weather[0].description }}</p>
+          <p class="card-text">體感溫度: {{ weather.weather.main.feels_like }}</p>
         </div>
       </div>
     </div>
@@ -36,10 +36,36 @@ export default {
       weatherData
     }
   },
+  // async created() {
+  //   try {
+  //     // 獲取用戶位置
+  //     if (navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(async (position) => {
+  //         const { latitude, longitude } = position.coords;
+  //         // 發送位置數據到後端
+  //         const data = await weatherService.getWeatherData({ latitude, longitude });
+  //         this.weatherData = data;
+  //       }, (err) => {
+  //         this.error = err;
+  //         this.loading = false;
+  //       });
+  //     } else {
+  //       this.error = new Error('Geolocation is not supported by this browser.');
+  //       this.loading = false;
+  //     }
+  //   } catch (err) {
+  //     this.error = err;
+  //   } finally {
+  //     this.loading = false;
+  //   }
+  // },
 }
 </script>
 
 <style lang="scss" scoped>
+.H1{
+  color: white;
+}
 .blank {
   width: 100%;
   height: 74px;
