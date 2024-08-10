@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import emitter from './helpers/emitter'
+import emitter from './helpers/emitter.js'
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigator from './components/Navigator.vue'
