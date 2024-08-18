@@ -37,11 +37,10 @@ export default {
   //       })
   //   })
   // },
-  // latitude, longitude
-  getCategory() {
+  getCategory(Latitude, Longitude) {
     const _params = {
-      latitude: 1,
-      longitude: 1
+      latitude: Latitude,
+      longitude: Longitude
     };
     return new Promise((resolve, reject) => {
       axios
