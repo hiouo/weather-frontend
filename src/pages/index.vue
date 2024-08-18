@@ -1,64 +1,68 @@
 <template>
-  <h1 class="mb-4 text-center H1">台灣各地天氣</h1>
-  <div class="row">
-    <div v-for="weather in weatherData" :key="weather.zh_city" class="col-md-4 mb-4">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h5 class="card-title">{{ weather.city }} ({{ weather.district }})</h5>
-          <p class="card-text">溫度: {{ weather.weather.main.temp }}°C</p>
-          <p class="card-text">描述: {{ weather.weather.weather[0].description }}</p>
-          <p class="card-text">體感溫度: {{ weather.weather.main.feels_like }}</p>
+  <h1 class="mb-4 text-center H1">最近位置：{{ userLocation }} 天氣</h1>
+  <div class="container">
+    <div class="row">
+      <div v-if="weatherData.length" class="col-md-6 mb-4" v-for="(data, index) in weatherData" :key="index">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h5 class="card-title">{{ data.location }}</h5>
+            <p class="card-text">溫度: {{ data.temperature }}</p>
+            <p class="card-text">描述: {{ data.weatherDescription }}</p>
+            <p class="card-text">風速: {{ data.windSpeed }}</p>
+            <p class="card-text">資料更新時間: {{ data.lastUpdated }}</p>
+            <p class="card-text">資料來源: {{ data.source }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
 import api from '@/api/index'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+
 export default {
   setup() {
     const weatherData = ref([])
+    const userLocation = ref('')
+
     onMounted(() => {
-      console.log("try")
-      api
-        .getCategory()
-        .then((res) => {
-          weatherData.value = res
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-      console.log("get")
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords
+            api
+              .getCategory(latitude, longitude)
+              .then((res) => {
+                weatherData.value = res // 顯示所有返回的天氣數據
+              })
+              .catch((error) => {
+                console.error(error)
+              })
+          },
+          (error) => {
+            console.error(error)
+          }
+        )
+      } else {
+        console.error('Geolocation is not supported by this browser.')
+      }
     })
+
+    // 監視 weatherData 的變化，並設置 userLocation
+    watch(weatherData, (newData) => {
+      if (newData.length > 0) {
+        userLocation.value = newData[0].location
+      }
+    })
+
     return {
-      weatherData
+      weatherData,
+      userLocation
     }
-  },
-  // async created() {
-  //   try {
-  //     // 獲取用戶位置
-  //     if (navigator.geolocation) {
-  //       navigator.geolocation.getCurrentPosition(async (position) => {
-  //         const { latitude, longitude } = position.coords;
-  //         // 發送位置數據到後端
-  //         const data = await weatherService.getWeatherData({ latitude, longitude });
-  //         this.weatherData = data;
-  //       }, (err) => {
-  //         this.error = err;
-  //         this.loading = false;
-  //       });
-  //     } else {
-  //       this.error = new Error('Geolocation is not supported by this browser.');
-  //       this.loading = false;
-  //     }
-  //   } catch (err) {
-  //     this.error = err;
-  //   } finally {
-  //     this.loading = false;
-  //   }
-  // },
+  }
 }
 </script>
 

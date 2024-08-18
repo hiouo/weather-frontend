@@ -9,9 +9,9 @@ const IS_USE_MOCK = import.meta.env.VITE_ENV_TYPE === 'mock'
 const isUAT = import.meta.env.VITE_ENV_TYPE === 'uat'
 
 const API_URL = isUAT
-  ? 'https://weather-backend-03xv.onrender.com'
-  : 'https://weather-backend-03xv.onrender.com' // todo: modify when prd
-
+  ? 'http://127.0.0.1:5000'
+  : 'http://127.0.0.1:5000' // todo: modify when prd
+  // https://weather-backend-03xv.onrender.com
 export class Axios {
   constructor(token = '', timeout = 15, recallOn = true, recallTimes = 3) {
     this._axios = axios.create()
